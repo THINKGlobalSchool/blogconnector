@@ -10,3 +10,22 @@
  * 
  */
 ?>
+
+ul.blogconnector-feed-list {
+	margin-top: 5px;
+}
+
+ul.blogconnector-feed-list li {
+	padding: 5px;
+	border-top: 1px solid #DDD;
+	border-left: 1px solid #DDD;
+	border-right: 1px solid #DDD;
+}
+
+ul.blogconnector-feed-list li:last-child {
+	border-bottom: 1px solid #DDD;
+}
+
+ul.blogconnector-feed-list li:nth-child(even) {
+	background-color: #EFEFEF;
+}
