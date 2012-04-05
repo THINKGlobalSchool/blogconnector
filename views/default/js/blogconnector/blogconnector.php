@@ -30,6 +30,15 @@ elgg.blogconnector.init = function() {
 
 	// Delegate click handler for connect menu items
 	$(document).delegate('.blogconnector-connect-menu-item', 'click', elgg.blogconnector.connectMenuClick);
+
+	// Delegate click handler for admin menu items
+	$(document).delegate('.blogconnector-admin-menu-item', 'click', elgg.blogconnector.adminMenuClick);
+	
+	// Delegate click handler for admin run cron
+	$(document).delegate('#blogconnector-run-cron', 'click', elgg.blogconnector.adminRunCronClick);
+	
+	// Delegate click handler for admin delete
+	$(document).delegate('#blogconnector-delete-entities', 'click', elgg.blogconnector.adminDeleteClick);
 }
 
 // Click handler for find feeds
@@ -121,6 +130,49 @@ elgg.blogconnector.connectMenuClick = function(event) {
 	$($(this).attr('href')).show();
 	
 	event.preventDefault();
+}
+
+// Admin menu click handler
+elgg.blogconnector.adminMenuClick = function(event) {
+	$('.blogconnector-admin-menu-item').parent().removeClass('elgg-state-selected');
+	$(this).parent().addClass('elgg-state-selected');
+
+	$('.blogconnector-menu-container').hide();
+	
+	// Hide 'save' button
+	if ($(this).attr('href') != "#blogconnector-admin-settings") {
+		$('form#blogconnector-settings').find('input.elgg-button-submit').hide();
+	} else {
+		$('form#blogconnector-settings').find('input.elgg-button-submit').show();
+	}
+	
+	$($(this).attr('href')).show();
+	
+	event.preventDefault();
+}
+
+// Admin run cron click handler 
+elgg.blogconnector.adminRunCronClick = function(event) {
+	elgg.get(elgg.get_site_url() + "blogconnector/test", {
+		success: function(data) {
+			$("#blogconnector-cron-output").html(data);
+		},
+		error: function() {
+			$("#blogconnector-cron-output").html("There was an error loading output");
+		}
+	});
+}
+
+// Admin delete click handler 
+elgg.blogconnector.adminDeleteClick = function(event) {
+	elgg.get(elgg.get_site_url() + "blogconnector/delete", {
+		success: function(data) {
+			$("#blogconnector-delete-output").html(data);
+		},
+		error: function() {
+			$("#blogconnector-delete-output").html("There was an error loading output");
+		}
+	});
 }
 
 // Clean up/fix remote url

@@ -65,35 +65,7 @@ $connect_input = elgg_view('input/submit', array(
 	'id' => 'blogconnector-connect-manual-button',
 ));
 
-$current_title_label = elgg_echo('blogconnector:label:currenttitle');
-$current_url_label = elgg_echo('blogconnector:label:currenturl');
-
-$blog_title = elgg_get_plugin_user_setting('externalblog_title', $user->getGUID(), 'blogconnector');
-$blog_url = elgg_get_plugin_user_setting('externalblog_url', $user->getGUID(), 'blogconnector');
-
-$blog_title = $blog_title ? $blog_title : elgg_echo('blogconnector:label:none');
-$blog_url = $blog_url ? elgg_view('output/url', array(
-	'text' => $blog_url, 
-	'value' => $blog_url,
-	'target' => '_blank',
-)) : elgg_echo('blogconnector:label:none');
-
-$current_content = <<<HTML
-	<div class='blogconnector-current-connection'>
-		<table class='elgg-table'>
-	        <tr>
-	        	<td><strong>$current_title_label</strong></td>
-	        	<td>$blog_title</td>
-	        </tr>
-	        <tr>
-	        	<td><strong>$current_url_label</strong></td>
-	        	<td>$blog_url</td>
-	        </tr>
-		</table>
-	</div>
-HTML;
-
-$new_content = <<<HTML
+$content = <<<HTML
 	$current_module
 	<div>
 		$menu
@@ -124,11 +96,6 @@ $new_content = <<<HTML
 	</div>
 HTML;
 
-$current_title = elgg_echo('blogconnector:label:currentconnectiontitle');
-$current_module = elgg_view_module('info', $current_title, $current_content);
-
-$new_title = elgg_echo('blogconnector:label:newconnectiontitle');
-$new_module = elgg_view_module('info', $new_title, $new_content);
-
-echo $current_module;
-echo $new_module;
+$content_title = elgg_echo('blogconnector:label:newconnectiontitle');
+$content_module = elgg_view_module('info', $content_title, $content);
+echo $content_module;
