@@ -13,6 +13,7 @@
 $english = array(
 	// General
 	'blogconnector' => 'Blog Connector',
+	'item:object:connected_blog_activity' => 'Connected Blog Activity',
 
 	// Page titles 
 
@@ -24,12 +25,25 @@ $english = array(
 	'blogconnector:label:findfeeds' => 'Find Feed(s)',
 	'blogconnector:label:manual' => 'Manual Entry',
 	'blogconnector:label:connect' => 'Connect',
-	'blogconnector:label:currenttitle' => 'Connected Blog Title',
-	'blogconnector:label:currenturl' => 'Connected Blog URL',
+	'blogconnector:label:connectedtitle' => 'Blog Title',
+	'blogconnector:label:connectedsite' => 'Blog Site',
+	'blogconnector:label:connectedurl' => 'Feed URL',
+	'blogconnector:label:connecteddate' => 'Date Connected',
+	'blogconnector:label:updateddate' => 'Last Updated',
 	'blogconnector:label:currentconnectiontitle' => 'Current Connection',
 	'blogconnector:label:newconnectiontitle' => 'Update Connection',
+	'blogconnector:label:na' => 'N/A',
+	'blogconnector:label:pollingfrequency' => 'Blog Polling Frequency',
+	
+	// Admin labels
+	'blogconnector:label:admin:settings' => 'Settings',
+	'blogconnector:label:admin:test' => 'Cron Test',
+	'blogconnector:label:admin:connections' => 'Connected Blogs',
+	'blogconnector:label:admin:delete' => 'Delete Entities',
+	'blogconnector:label:admin:runcron' => 'Run Cron',
 
 	// River
+	'river:create:object:connected_blog_activity' => '%s published a new blog post called %s at %s',
 
 	// Messages
 	'blogconnector:success:foundfeeds' => 'Found the following feed(s). Select one below, enter a title for your Blog and click \'Connect\':',

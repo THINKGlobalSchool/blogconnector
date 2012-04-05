@@ -8,6 +8,8 @@
  * @copyright THINK Global School 2010-2012
  * @link http://www.thinkglobalschool.org/
  * 
+ * Just connects one feed for now, but I've kept in mind that there could be more than one so this will 
+ * set up an array
  */
 $user = elgg_get_logged_in_user_entity();
 
@@ -41,6 +43,8 @@ $feed->set_feed_url($feed_url);
 $feed->enable_cache(FALSE);
 $feed->init();
 
+$feed_permalink = $feed->get_permalink();
+
 // If we have an error initting the feed, display an error (log the real error)
 if ($feed_error = $feed->error()) {
     error_log($feed_error);
@@ -48,9 +52,24 @@ if ($feed_error = $feed->error()) {
 	forward(REFERER);
 }
 
+// Set date connected for future use
+$feed_connected = strtotime(date("F j, Y")); // Timestamp of 'today'
+
+$blog_connections = array();
+
+// Set up connections array
+$blog_connections[] = array(
+	'title' => $feed_title,
+	'permalink' => $feed_permalink,
+	'url' => $feed_url,
+	'connected' => $feed_connected,
+	'last_update' => $feed_connected,
+);
+
+$serial_connections = serialize($blog_connections);
+
 // Try to save feed URL & Title
-if (!elgg_set_plugin_user_setting('externalblog_url', $feed_url, $user->getGUID(), 'blogconnector') ||
-	!elgg_set_plugin_user_setting('externalblog_title', $feed_title, $user->getGUID(), 'blogconnector')) {
+if (!elgg_set_plugin_user_setting('blog_connections', $serial_connections, $user->getGUID(), 'blogconnector')) {
 	register_error(elgg_echo('blogconnector:error:savefeed'));
 } else {
 	system_message(elgg_echo('blogconnector:success:savefeed'));

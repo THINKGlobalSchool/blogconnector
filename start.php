@@ -13,8 +13,9 @@
 elgg_register_event_handler('init', 'system', 'blogconnector_init');
 
 function blogconnector_init() {
-	// Contest library
+	// Blogconnector library
 	elgg_register_library('elgg:blogconnector', elgg_get_plugins_path() . 'blogconnector/lib/blogconnector.php');
+	elgg_load_library('elgg:blogconnector');
 
 	// Register JS
 	$bc_js = elgg_get_simplecache_url('js', 'blogconnector/blogconnector');
@@ -32,6 +33,15 @@ function blogconnector_init() {
 	// Page setup to add blog connector to user settings
 	elgg_register_event_handler('pagesetup', 'system', 'blogconnector_pagesetup');
 
+	// Cron hook for blog polling
+	$polling = elgg_get_plugin_setting('pollingfrequency', 'blogconnector');
+	
+	if (!$polling) {
+		$polling = 'daily';
+	}
+
+	elgg_register_plugin_hook_handler('cron', $polling, 'blogconnector_polling_cron');
+
 	// Blog connector page handler
 	elgg_register_page_handler('blogconnector', 'blogconnector_page_handler');
 
@@ -41,9 +51,6 @@ function blogconnector_init() {
 	
 	// Ajax view whitelist
 	elgg_register_ajax_view('blogconnector/remote_feeds');
-
-	//elgg_load_css('elgg.blogconnector');
-	//elgg_load_js('elgg.blogconnector');	
 }
 
 /**
@@ -53,7 +60,6 @@ function blogconnector_init() {
  * @return bool
  */
 function blogconnector_page_handler($page) {
-	elgg_load_library('elgg:blogconnector');
 	elgg_load_js('google.jsapi');
 	elgg_load_js('elgg.blogconnector');
 	elgg_load_css('elgg.blogconnector');
@@ -63,6 +69,44 @@ function blogconnector_page_handler($page) {
 		default:
 			gatekeeper();
 			$params = blogconnector_get_usersettings_content();
+			break;
+		case 'test':
+			if (elgg_is_admin_logged_in()) {
+				echo "<pre>";
+				elgg_push_context('blogconnector_log');
+				blogconnector_polling_cron(null, null, null, null);
+				elgg_pop_context();
+				echo "</pre>";
+				return;
+			} else {
+				forward();
+			}
+			break;
+		case 'delete':
+			if (elgg_is_admin_logged_in()) {
+				// Delete all items and river items
+				set_time_limit(0);
+				$connected_blogs = new ElggBatch('elgg_get_entities', array(
+					'type' => 'object',
+					'subtype' => 'connected_blog_activity',
+					'limit' => 0,
+				));
+			
+				echo "<pre>";
+				$count = 0;
+				foreach ($connected_blogs as $blog) {
+					$blog->delete();
+					elgg_delete_river(array(
+						'object_guid' => $blog->guid,
+					));
+					$count++;
+				}
+				echo "Deleted $count blog(s)";
+				echo "</pre>";
+				return;
+			} else {
+				forward();
+			}
 			break;
 	}
 
