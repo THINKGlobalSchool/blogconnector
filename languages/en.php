@@ -13,7 +13,7 @@
 $english = array(
 	// General
 	'blogconnector' => 'Blog Connector',
-	'item:object:connected_blog_activity' => 'Connected Blog Activity',
+	'item:object:connected_blog_activity' => 'Connected Blog Posts',
 
 	// Page titles 
 

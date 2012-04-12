@@ -35,19 +35,23 @@ function blogconnector_init() {
 
 	// Cron hook for blog polling
 	$polling = elgg_get_plugin_setting('pollingfrequency', 'blogconnector');
-	
 	if (!$polling) {
 		$polling = 'daily';
 	}
-
 	elgg_register_plugin_hook_handler('cron', $polling, 'blogconnector_polling_cron');
 
 	// Blog connector page handler
 	elgg_register_page_handler('blogconnector', 'blogconnector_page_handler');
+	
+	// URL Handler
+	elgg_register_entity_url_handler('object', 'connected_blog_activity', 'blogconnector_url_handler');
 
 	// Actions
 	$action_base = elgg_get_plugins_path() . 'blogconnector/actions/blogconnector';
 	elgg_register_action("blogconnector/connect", "$action_base/connect.php");
+
+	// Register for search
+	elgg_register_entity_type('object', 'connected_blog_activity');
 	
 	// Ajax view whitelist
 	elgg_register_ajax_view('blogconnector/remote_feeds');
@@ -131,4 +135,14 @@ function blogconnector_pagesetup() {
 		);
 		elgg_register_menu_item('page', $params);
 	}
+}
+
+/**
+ * Format and return the URL for connected blogs.
+ *
+ * @param ElggObject $entity Blog activity object
+ * @return string URL of the blog post (on the actual blog)
+ */
+function blogconnector_url_handler($entity) {
+	return $entity->item_permalink;
 }
