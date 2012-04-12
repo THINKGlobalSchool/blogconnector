@@ -81,10 +81,10 @@ function blogconnector_page_handler($page) {
 				blogconnector_polling_cron(null, null, null, null);
 				elgg_pop_context();
 				echo "</pre>";
-				return;
 			} else {
 				forward();
 			}
+			return TRUE;
 			break;
 		case 'delete':
 			if (elgg_is_admin_logged_in()) {
@@ -107,10 +107,10 @@ function blogconnector_page_handler($page) {
 				}
 				echo "Deleted $count blog(s)";
 				echo "</pre>";
-				return;
 			} else {
 				forward();
 			}
+			return TRUE;
 			break;
 	}
 
