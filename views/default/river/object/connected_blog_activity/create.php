@@ -28,7 +28,7 @@ $item_link = elgg_view('output/url', array(
 	'href' => $object->item_permalink,
 ));
 
-$summary = elgg_echo('river:create:object:connected_blog_activity', array($owner_link, $item_link, $blog_link));
+$summary = elgg_echo('river:create:object:connected_blog_activity_river', array($owner_link, $item_link, $blog_link));
 
 echo elgg_view('river/elements/layout', array(
 	'item' => $vars['item'],
