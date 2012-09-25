@@ -43,7 +43,7 @@ $english = array(
 	'blogconnector:label:admin:runcron' => 'Run Cron',
 
 	// River
-	'river:create:object:connected_blog_activity' => '%s published a new blog post called %s at %s',
+	'river:create:object:connected_blog_activity_river' => '%s published a new blog post called %s at %s',
 
 	// Messages
 	'blogconnector:success:foundfeeds' => 'Found the following feed(s). Select one below, enter a title for your Blog and click \'Connect\':',
