@@ -5,12 +5,14 @@
  * @package TGSBlogConnector
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010-2012
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.org/
  * 
+ * @uses $vars['connections']
  */
 
 $user = elgg_get_logged_in_user_entity();
+$blog_connections = elgg_extract('connections', $vars);
 
 // Labels
 $blog_title_label = elgg_echo('blogconnector:label:connectedtitle');
@@ -19,9 +21,6 @@ $blog_url_label = elgg_echo('blogconnector:label:connectedurl');
 $blog_connected_label = elgg_echo('blogconnector:label:connecteddate');
 $blog_updated_label = elgg_echo('blogconnector:label:updateddate');
 $na =  elgg_echo('blogconnector:label:na');
-
-// Get user blog connections
-$blog_connections = unserialize(elgg_get_plugin_user_setting('blog_connections', $user->getGUID(), 'blogconnector'));
 
 if (is_array($blog_connections)) {
 	$blog_title = $blog_connections[0]['title'];
@@ -39,7 +38,7 @@ $blog_site = $blog_site ? elgg_view('output/url', array(
 	'target' => '_blank',
 )) : $na;
 
-$blog_url = $blog_url ? elgg_view('output/url', array(
+$blog_url_link = $blog_url ? elgg_view('output/url', array(
 	'text' => $blog_url, 
 	'value' => $blog_url,
 	'target' => '_blank',
@@ -47,6 +46,16 @@ $blog_url = $blog_url ? elgg_view('output/url', array(
 
 $blog_updated = ($blog_updated != $blog_connected) ? date("F j, Y", $blog_updated) : $na;
 $blog_connected = $blog_connected ? date("F j, Y", $blog_connected) : $na;
+
+$blog_disconnect = elgg_view('output/url', array(
+	'href' => elgg_normalize_url('action/blogconnector/disconnect'),
+	'text' => elgg_echo('blogconnector:label:disconnect'),
+	'title' => elgg_echo('blogconnector:label:disconnect'),
+	'class' => 'elgg-button elgg-button-action centered',
+	'style' => 'display: block; width: 20%;',
+	'is_action' => true,
+	'is_trusted' => true,
+));
 
 $content = <<<HTML
 	<div class='blogconnector-current-connection'>
@@ -61,7 +70,7 @@ $content = <<<HTML
 	        </tr>
 	        <tr>
 	        	<td><strong>$blog_url_label</strong></td>
-	        	<td>$blog_url</td>
+	        	<td>$blog_url_link</td>
 	        </tr>
 			<tr>
 	        	<td><strong>$blog_connected_label</strong></td>
@@ -70,6 +79,9 @@ $content = <<<HTML
 			<tr>
 	        	<td><strong>$blog_updated_label</strong></td>
 	        	<td>$blog_updated</td>
+	        </tr>
+	        <tr>
+	        	<td colspan='2'>$blog_disconnect</td>
 	        </tr>
 		</table>
 	</div>

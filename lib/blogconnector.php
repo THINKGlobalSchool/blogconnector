@@ -24,9 +24,13 @@ function blogconnector_get_usersettings_content() {
 
 	elgg_push_breadcrumb(elgg_echo('settings'), "settings/user/$user->username");
 	elgg_push_breadcrumb($title);
+
+	$blog_connections = unserialize(elgg_get_plugin_user_setting('blog_connections', $user->getGUID(), 'blogconnector'));
 	
-	// Get current connection info
-	$content = elgg_view('blogconnector/info');
+	if ($blog_connections) {
+		// Get current connection info
+		$content = elgg_view('blogconnector/info', array('connections' => $blog_connections));
+	}
 
 	// Get the form
 	$content .= elgg_view_form('blogconnector/connect');

@@ -49,6 +49,7 @@ function blogconnector_init() {
 	// Actions
 	$action_base = elgg_get_plugins_path() . 'blogconnector/actions/blogconnector';
 	elgg_register_action("blogconnector/connect", "$action_base/connect.php");
+	elgg_register_action("blogconnector/disconnect", "$action_base/disconnect.php");
 
 	// Register for search
 	elgg_register_entity_type('object', 'connected_blog_activity');

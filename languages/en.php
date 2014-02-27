@@ -25,13 +25,14 @@ $english = array(
 	'blogconnector:label:findfeeds' => 'Find Feed(s)',
 	'blogconnector:label:manual' => 'Manual Entry',
 	'blogconnector:label:connect' => 'Connect',
+	'blogconnector:label:disconnect' => 'Disconnect',
 	'blogconnector:label:connectedtitle' => 'Blog Title',
 	'blogconnector:label:connectedsite' => 'Blog Site',
 	'blogconnector:label:connectedurl' => 'Feed URL',
 	'blogconnector:label:connecteddate' => 'Date Connected',
 	'blogconnector:label:updateddate' => 'Last Updated',
 	'blogconnector:label:currentconnectiontitle' => 'Current Connection',
-	'blogconnector:label:newconnectiontitle' => 'Update Connection',
+	'blogconnector:label:newconnectiontitle' => 'Add/Update Connection',
 	'blogconnector:label:na' => 'N/A',
 	'blogconnector:label:pollingfrequency' => 'Blog Polling Frequency',
 	
@@ -48,11 +49,13 @@ $english = array(
 	// Messages
 	'blogconnector:success:foundfeeds' => 'Found the following feed(s). Select one below, enter a title for your Blog and click \'Connect\':',
 	'blogconnector:success:savefeed' => 'Successfully saved the blog feed',
+	'blogconnector:success:disconnect' => 'Successfully disconnected blog',
 	'blogconnector:error:emptytitle' => 'Title cannot be empty',
 	'blogconnector:error:emptyurl' => 'URL Cannot be empty',
 	'blogconnector:error:nofeeds' => 'Could not find any RSS feeds at given URL. Try again, or enter RSS URL manually.',
 	'blogconnector:error:savefeed' => 'There was an error saving the blog feed',
-	'blogconnector:error:invalidfeed' => 'There was a problem with the feed URL you supplied.'
+	'blogconnector:error:invalidfeed' => 'There was a problem with the feed URL you supplied.',
+	'blogconnector:error:disconnect' => 'There was an error disconnecting the blog',
 
 	// Other content
 );
