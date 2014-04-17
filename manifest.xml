@@ -8,7 +8,7 @@
 	<blurb>Blog Connector Plugin</blurb>
 	<description>Allows users the ability to connect an external blog to their profile</description>
 	<website>http://www.thinkglobalschool.org/</website>
-	<copyright>See COPYRIGHT.txt</copyright>
+	<copyright>THINK Global School 2010 - 2014</copyright>
 	<license>GNU General Public License version 2</license>
 	<requires>
 		<type>elgg_release</type>
