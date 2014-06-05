@@ -5,7 +5,7 @@
  * @package TGSBlogConnector
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010-2012
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.org/
  * 
  */
@@ -19,15 +19,10 @@ function blogconnector_init() {
 
 	// Register JS
 	$bc_js = elgg_get_simplecache_url('js', 'blogconnector/blogconnector');
-	elgg_register_simplecache_view('js/blogconnector/blogconnector');
 	elgg_register_js('elgg.blogconnector', $bc_js);
-	
-	// Register google JS
-	elgg_register_js('google.jsapi', "https://www.google.com/jsapi", 'head', 1);
 
 	// Register the barge JS
 	$bc_css = elgg_get_simplecache_url('css', 'blogconnector/css');
-	elgg_register_simplecache_view('css/blogconnector/css');
 	elgg_register_css('elgg.blogconnector', $bc_css);
 
 	// Page setup to add blog connector to user settings
@@ -65,7 +60,6 @@ function blogconnector_init() {
  * @return bool
  */
 function blogconnector_page_handler($page) {
-	elgg_load_js('google.jsapi');
 	elgg_load_js('elgg.blogconnector');
 	elgg_load_css('elgg.blogconnector');
 

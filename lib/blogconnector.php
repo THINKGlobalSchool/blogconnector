@@ -5,7 +5,7 @@
  * @package TGSBlogConnector
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010-2012
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.org/
  * 
  */
@@ -110,7 +110,7 @@ function blogconnector_get_connected_feeds() {
 	$dbprefix = elgg_get_config('dbprefix');
 
 	// Namespace for enternalblog_url user setting
-	$setting_namespace = elgg_namespace_plugin_private_setting('user_setting', 'blog_connections', 'blogconnector');
+	$setting_namespace = _elgg_namespace_plugin_private_setting('user_setting', 'blog_connections', 'blogconnector');
 
 	$query = "SELECT p.entity_guid, p.value from {$dbprefix}private_settings p 
 			  WHERE p.name = '{$setting_namespace}'";

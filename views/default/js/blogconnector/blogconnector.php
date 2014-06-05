@@ -5,7 +5,7 @@
  * @package TGSBlogConnector
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010-2012
+ * @copyright THINK Global School 2010 - 2014
  * @link http://www.thinkglobalschool.org/
  * 
  */
@@ -17,28 +17,28 @@ elgg.provide('elgg.blogconnector');
 // Init 
 elgg.blogconnector.init = function() {
 	// Delegate click handler for find feed button
-	$(document).delegate('#blogconnector-find-button', 'click', elgg.blogconnector.findClick)
+	$(document).on('click', '#blogconnector-find-button', elgg.blogconnector.findClick)
 
 	// Delegate click handler for connect feed button
-	$(document).delegate('#blogconnector-connect-lookup-button', 'click', elgg.blogconnector.lookupConnectClick);
+	$(document).on('click', '#blogconnector-connect-lookup-button', elgg.blogconnector.lookupConnectClick);
 
 	// Delegate click handler for manual connect feed button
-	$(document).delegate('#blogconnector-connect-manual-button', 'click', elgg.blogconnector.manualConnectClick);
+	$(document).on('click', '#blogconnector-connect-manual-button', elgg.blogconnector.manualConnectClick);
 	
 	// Delegate click handler radio button selects
-	$(document).delegate('.blogconnector-feed-select', 'click', elgg.blogconnector.feedSelectClick);
+	$(document).on('click', '.blogconnector-feed-select', elgg.blogconnector.feedSelectClick);
 
 	// Delegate click handler for connect menu items
-	$(document).delegate('.blogconnector-connect-menu-item', 'click', elgg.blogconnector.connectMenuClick);
+	$(document).on('click', '.blogconnector-connect-menu-item', elgg.blogconnector.connectMenuClick);
 
 	// Delegate click handler for admin menu items
-	$(document).delegate('.blogconnector-admin-menu-item', 'click', elgg.blogconnector.adminMenuClick);
+	$(document).on('click', '.blogconnector-admin-menu-item', elgg.blogconnector.adminMenuClick);
 	
 	// Delegate click handler for admin run cron
-	$(document).delegate('#blogconnector-run-cron', 'click', elgg.blogconnector.adminRunCronClick);
+	$(document).on('click', '#blogconnector-run-cron', elgg.blogconnector.adminRunCronClick);
 	
 	// Delegate click handler for admin delete
-	$(document).delegate('#blogconnector-delete-entities', 'click', elgg.blogconnector.adminDeleteClick);
+	$(document).on('click', '#blogconnector-delete-entities', elgg.blogconnector.adminDeleteClick);
 }
 
 // Click handler for find feeds
