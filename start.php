@@ -5,7 +5,7 @@
  * @package TGSBlogConnector
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2014
+ * @copyright THINK Global School 2010 - 2015
  * @link http://www.thinkglobalschool.org/
  * 
  */
@@ -39,7 +39,7 @@ function blogconnector_init() {
 	elgg_register_page_handler('blogconnector', 'blogconnector_page_handler');
 	
 	// URL Handler
-	elgg_register_entity_url_handler('object', 'connected_blog_activity', 'blogconnector_url_handler');
+	elgg_register_plugin_hook_handler('entity:url', 'object', 'blogconnector_url_handler');
 
 	// Actions
 	$action_base = elgg_get_plugins_path() . 'blogconnector/actions/blogconnector';
@@ -133,11 +133,21 @@ function blogconnector_pagesetup() {
 }
 
 /**
- * Format and return the URL for connected blogs.
+ * Returns the URL from a connected blog entity
  *
- * @param ElggObject $entity Blog activity object
- * @return string URL of the blog post (on the actual blog)
+ * @param string $hook   'entity:url'
+ * @param string $type   'object'
+ * @param string $url    The current URL
+ * @param array  $params Hook parameters
+ * @return string
  */
-function blogconnector_url_handler($entity) {
+function blogconnector_url_handler($hook, $type, $url, $params) {
+	$entity = $params['entity'];
+
+	// Check that the entity is a photo object
+	if (!elgg_instanceof($entity, 'object', 'connected_blog_activity')) {
+		return;
+	}
+
 	return $entity->item_permalink;
 }
