@@ -209,14 +209,15 @@ function blogconnector_polling_cron($hook, $type, $value, $params) {
 								$log .= "      !!! ERROR SAVING ENTITY !!!";
 							} else {
 								// Add to river
-								$river = add_to_river(
-									"river/object/connected_blog_activity/create", 
-									"create",
-									$user_guid, 
-									$blog_activity->guid, 
-									$blog_activity->access_id,
-									$item_date
-								);
+								$river = elgg_create_river_item(array(
+									'view' => 'river/object/connected_blog_activity/create',
+									'action_type' => 'create',
+									'subject_guid' => $user_guid,
+									'object_guid' => $blog_activity->guid,
+									'access_id' => $blog_activity->access_id,
+									'posted' => $item_date
+								));
+
 								$log .= "      -> GUID: {$blog_activity->guid} - RIVER: {$river}\n\n";
 							}			
 						}

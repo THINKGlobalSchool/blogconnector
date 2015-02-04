@@ -5,7 +5,7 @@
  * @package TGSBlogConnector
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2014
+ * @copyright THINK Global School 2010 - 2015
  * @link http://www.thinkglobalschool.org/
  * 
  */
@@ -19,7 +19,7 @@ elgg_register_menu_item('blogconnector-connect-menu', array(
 	'href' => '#blogconnector-lookup',
 	'priority' => 0,
 	'item_class' => 'elgg-state-selected',
-	'class' => 'blogconnector-connect-menu-item',
+	'link_class' => 'blogconnector-connect-menu-item',
 ));
 
 elgg_register_menu_item('blogconnector-connect-menu', array(
@@ -27,7 +27,7 @@ elgg_register_menu_item('blogconnector-connect-menu', array(
 	'text' => elgg_echo('blogconnector:label:manual'),
 	'href' => '#blogconnector-manual',
 	'priority' => 1,
-	'class' => 'blogconnector-connect-menu-item',
+	'link_class' => 'blogconnector-connect-menu-item',
 ));
 
 $menu = elgg_view_menu('blogconnector-connect-menu', array(

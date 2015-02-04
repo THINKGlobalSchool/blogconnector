@@ -5,7 +5,7 @@
  * @package TGSBlogConnector
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2014
+ * @copyright THINK Global School 2010 - 2015
  * @link http://www.thinkglobalschool.org/
  * 
  */
@@ -18,7 +18,7 @@ elgg_register_menu_item('blogconnector-admin-menu', array(
 	'href' => '#blogconnector-admin-settings',
 	'priority' => 0,
 	'item_class' => 'elgg-state-selected',
-	'class' => 'blogconnector-admin-menu-item',
+	'link_class' => 'blogconnector-admin-menu-item',
 ));
 
 elgg_register_menu_item('blogconnector-admin-menu', array(
@@ -26,7 +26,7 @@ elgg_register_menu_item('blogconnector-admin-menu', array(
 	'text' => elgg_echo('blogconnector:label:admin:connections'),
 	'href' => '#blogconnector-admin-connections',
 	'priority' => 1,
-	'class' => 'blogconnector-admin-menu-item',
+	'link_class' => 'blogconnector-admin-menu-item',
 ));
 
 elgg_register_menu_item('blogconnector-admin-menu', array(
@@ -34,7 +34,7 @@ elgg_register_menu_item('blogconnector-admin-menu', array(
 	'text' => elgg_echo('blogconnector:label:admin:test'),
 	'href' => '#blogconnector-admin-test',
 	'priority' => 2,
-	'class' => 'blogconnector-admin-menu-item',
+	'link_class' => 'blogconnector-admin-menu-item',
 ));
 
 elgg_register_menu_item('blogconnector-admin-menu', array(
@@ -42,7 +42,7 @@ elgg_register_menu_item('blogconnector-admin-menu', array(
 	'text' => elgg_echo('blogconnector:label:admin:delete'),
 	'href' => '#blogconnector-admin-delete',
 	'priority' => 3,
-	'class' => 'blogconnector-admin-menu-item',
+	'link_class' => 'blogconnector-admin-menu-item',
 ));
 
 $menu = elgg_view_menu('blogconnector-admin-menu', array(

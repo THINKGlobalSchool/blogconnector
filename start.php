@@ -33,6 +33,7 @@ function blogconnector_init() {
 	if (!$polling) {
 		$polling = 'daily';
 	}
+
 	elgg_register_plugin_hook_handler('cron', $polling, 'blogconnector_polling_cron');
 
 	// Blog connector page handler

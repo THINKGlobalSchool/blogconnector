@@ -23,7 +23,7 @@ if (count($feeds) > 1) {
 		$feed_link = "<a target='_blank' href='{$feed['url']}'>{$feed['title']}</a>";
 		$feed_radio = "<input class='blogconnector-feed-select' type='radio' name='feed_url_lookup' value='{$feed['url']}' />";
 		
-		$list .= "<li class='clearfix'><div class='feed-link left'>$feed_link</div><div class='feed-radio right'>$feed_radio</div></li>";
+		$list .= "<li class='clearfix'><div class='feed-link'>$feed_link</div><div class='feed-radio left'>$feed_radio</div></li>";
 	}
 	
 	$list .= "</ul>";

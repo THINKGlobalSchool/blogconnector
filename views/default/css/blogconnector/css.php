@@ -5,7 +5,7 @@
  * @package TGSBlogConnector
  * @license http://www.gnu.org/licenses/old-licenses/gpl-2.0.html GNU Public License version 2
  * @author Jeff Tilson
- * @copyright THINK Global School 2010 - 2014
+ * @copyright THINK Global School 2010 - 2015
  * @link http://www.thinkglobalschool.org/
  * 
  */
@@ -28,4 +28,13 @@ ul.blogconnector-feed-list li:last-child {
 
 ul.blogconnector-feed-list li:nth-child(even) {
 	background-color: #EFEFEF;
+}
+
+.feed-link {
+	display: inline-block;
+	padding-left: 5px;
+}
+
+.feed-radio.left {
+	float: left;
 }
